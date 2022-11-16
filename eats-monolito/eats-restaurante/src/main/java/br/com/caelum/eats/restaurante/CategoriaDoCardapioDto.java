@@ -4,25 +4,52 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 class CategoriaDoCardapioDto {
 
-	private Long id;
-	private String nome;
-	private List<ItemDoCardapioDto> itens = new ArrayList<>();
+    private Long id;
+    private String nome;
+    private List<ItemDoCardapioDto> itens = new ArrayList<>();
 
-	CategoriaDoCardapioDto(CategoriaDoCardapio categoria) {
-		this(categoria.getId(), categoria.getNome(), trataItens(categoria.getItens()));
-	}
+    public CategoriaDoCardapioDto() {
+    }
 
-	private static List<ItemDoCardapioDto> trataItens(List<ItemDoCardapio> itens) {
-		return itens.stream().map(ItemDoCardapioDto::new).collect(Collectors.toList());
-	}
+    public CategoriaDoCardapioDto(Long id, String nome, List<ItemDoCardapioDto> trataItens) {
+        this.id = id;
+        this.nome = nome;
+        this.itens = trataItens;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public List<ItemDoCardapioDto> getItens() {
+        return itens;
+    }
+
+    public void setItens(List<ItemDoCardapioDto> itens) {
+        this.itens = itens;
+    }
+
+    CategoriaDoCardapioDto(CategoriaDoCardapio categoria) {
+        this(categoria.getId(), categoria.getNome(), trataItens(categoria.getItens()));
+    }
+
+    private static List<ItemDoCardapioDto> trataItens(List<ItemDoCardapio> itens) {
+        return itens.stream().map(ItemDoCardapioDto::new).collect(Collectors.toList());
+    }
 
 }

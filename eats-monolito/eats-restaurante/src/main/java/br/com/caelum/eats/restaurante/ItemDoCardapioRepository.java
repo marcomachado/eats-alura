@@ -1,7 +1,9 @@
 package br.com.caelum.eats.restaurante;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-interface ItemDoCardapioRepository extends JpaRepository<ItemDoCardapio, Long>  {
+@Repository
+public interface ItemDoCardapioRepository extends JpaRepository<ItemDoCardapio, Long>  {
 
 }

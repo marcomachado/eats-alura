@@ -2,6 +2,7 @@ package br.com.caelum.eats.distancia;
 
 import java.net.URI;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,19 +13,16 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@AllArgsConstructor
-@Slf4j
+
 class RestaurantesController {
 
+    @Autowired
     private RestauranteRepository repo;
 
     @PostMapping("/restaurantes")
     ResponseEntity<Restaurante> adiciona(@RequestBody Restaurante restaurante, UriComponentsBuilder uriBuilder) {
-        log.info("Insere novo restaurante: " + restaurante);
         Restaurante salvo = repo.save(restaurante);
         UriComponents uriComponents = uriBuilder.path("/restaurantes/{id}").buildAndExpand(salvo.getId());
         URI uri = uriComponents.toUri();
@@ -36,7 +34,6 @@ class RestaurantesController {
         if (!repo.existsById(id)) {
             throw new ResourceNotFoundException();
         }
-        log.info("Atualiza restaurante: " + restaurante);
         return repo.save(restaurante);
     }
 

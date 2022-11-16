@@ -8,7 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor;
+
 
 /*
  * Serviço que simula a obtenção dos restaurantes mais próximos a um dado CEP.
@@ -16,7 +16,6 @@ import lombok.AllArgsConstructor;
  * 
  */
 @Service
-@AllArgsConstructor
 class DistanciaService {
 
 	private static final Pageable LIMIT = PageRequest.of(0, 5);

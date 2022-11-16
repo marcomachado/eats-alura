@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import br.com.caelum.eats.restaurante.RestauranteDto;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+
+
+
+
+
+
 public class PedidoDto {
 
 	private Long id;
@@ -22,7 +22,67 @@ public class PedidoDto {
 	private RestauranteDto restaurante;
 	private EntregaDto entrega;
 	private List<ItemDoPedidoDto> itens = new ArrayList<>();
-	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public LocalDateTime getDataHora() {
+		return dataHora;
+	}
+
+	public void setDataHora(LocalDateTime dataHora) {
+		this.dataHora = dataHora;
+	}
+
+	public Pedido.Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Pedido.Status status) {
+		this.status = status;
+	}
+
+	public RestauranteDto getRestaurante() {
+		return restaurante;
+	}
+
+	public void setRestaurante(RestauranteDto restaurante) {
+		this.restaurante = restaurante;
+	}
+
+	public EntregaDto getEntrega() {
+		return entrega;
+	}
+
+	public void setEntrega(EntregaDto entrega) {
+		this.entrega = entrega;
+	}
+
+	public List<ItemDoPedidoDto> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<ItemDoPedidoDto> itens) {
+		this.itens = itens;
+	}
+
+	public PedidoDto() {
+	}
+
+	public PedidoDto(Long id, LocalDateTime dataHora, Pedido.Status status, RestauranteDto restaurante, EntregaDto entrega, List<ItemDoPedidoDto> itens) {
+		this.id = id;
+		this.dataHora = dataHora;
+		this.status = status;
+		this.restaurante = restaurante;
+		this.entrega = entrega;
+		this.itens = itens;
+	}
+
 	public PedidoDto(Pedido pedido) {
 		this(pedido.getId(), pedido.getDataHora(), pedido.getStatus(), new RestauranteDto(pedido.getRestaurante()), new EntregaDto(pedido.getEntrega()), trataItens(pedido.getItens()));
 	}

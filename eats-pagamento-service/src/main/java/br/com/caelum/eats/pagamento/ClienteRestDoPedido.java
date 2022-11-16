@@ -1,7 +1,6 @@
 package br.com.caelum.eats.pagamento;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -36,10 +35,23 @@ public class ClienteRestDoPedido {
     }
 }
 
-@Getter
-@AllArgsConstructor
 class PedidoMudancaDeStatusRequest {
     private String status;
+
+    public PedidoMudancaDeStatusRequest(String status) {
+        this.status = status;
+    }
+
+    public PedidoMudancaDeStatusRequest() {
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }
 
 

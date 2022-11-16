@@ -1,11 +1,13 @@
 package br.com.caelum.eats.administrativo;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.List;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+@Repository
+public interface FormaDePagamentoRepository extends JpaRepository<FormaDePagamento, Long> {
 
-interface FormaDePagamentoRepository extends JpaRepository<FormaDePagamento, Long> {
-
-	List<FormaDePagamento> findAllByOrderByNomeAsc();
+    List<FormaDePagamento> findAllByOrderByNomeAsc();
 
 }

@@ -10,14 +10,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.MapsId;
 
 import br.com.caelum.eats.administrativo.FormaDePagamento;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 class RestauranteFormaDePagamento {
 
 	@EmbeddedId
@@ -31,10 +25,40 @@ class RestauranteFormaDePagamento {
 	@MapsId("formaDePagamentoId")
 	private FormaDePagamento formaDePagamento;
 
+	public RestauranteFormaDePagamento() {
+	}
+
+	public RestauranteFormaDePagamento(RestauranteFormaDePagamentoId id, Restaurante restaurante, FormaDePagamento formaDePagamento) {
+		this.id = id;
+		this.restaurante = restaurante;
+		this.formaDePagamento = formaDePagamento;
+	}
+
+	public RestauranteFormaDePagamentoId getId() {
+		return id;
+	}
+
+	public void setId(RestauranteFormaDePagamentoId id) {
+		this.id = id;
+	}
+
+	public Restaurante getRestaurante() {
+		return restaurante;
+	}
+
+	public void setRestaurante(Restaurante restaurante) {
+		this.restaurante = restaurante;
+	}
+
+	public FormaDePagamento getFormaDePagamento() {
+		return formaDePagamento;
+	}
+
+	public void setFormaDePagamento(FormaDePagamento formaDePagamento) {
+		this.formaDePagamento = formaDePagamento;
+	}
+
 	@Embeddable
-	@Data
-	@NoArgsConstructor
-	@AllArgsConstructor
 	static class RestauranteFormaDePagamentoId implements Serializable {
 		private static final long serialVersionUID = 1L;
 
@@ -43,5 +67,29 @@ class RestauranteFormaDePagamento {
 
 		@Column(name = "forma_de_pagamento_id")
 		private Long formaDePagamentoId;
+
+		public RestauranteFormaDePagamentoId() {
+		}
+
+		public RestauranteFormaDePagamentoId(Long restauranteId, Long formaDePagamentoId) {
+			this.restauranteId = restauranteId;
+			this.formaDePagamentoId = formaDePagamentoId;
+		}
+
+		public Long getRestauranteId() {
+			return restauranteId;
+		}
+
+		public void setRestauranteId(Long restauranteId) {
+			this.restauranteId = restauranteId;
+		}
+
+		public Long getFormaDePagamentoId() {
+			return formaDePagamentoId;
+		}
+
+		public void setFormaDePagamentoId(Long formaDePagamentoId) {
+			this.formaDePagamentoId = formaDePagamentoId;
+		}
 	}
 }

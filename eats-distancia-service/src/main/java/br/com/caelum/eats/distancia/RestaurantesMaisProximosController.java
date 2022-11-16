@@ -2,16 +2,18 @@ package br.com.caelum.eats.distancia;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.AllArgsConstructor;
+
 
 @RestController
-@AllArgsConstructor
+
 class RestaurantesMaisProximosController {
 
+	@Autowired
 	private DistanciaService distanciaService;
 
 	@GetMapping("/restaurantes/mais-proximos/{cep}")

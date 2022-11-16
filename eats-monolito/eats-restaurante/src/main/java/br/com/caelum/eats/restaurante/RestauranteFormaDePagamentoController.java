@@ -2,6 +2,7 @@ package br.com.caelum.eats.restaurante;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,12 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.caelum.eats.administrativo.FormaDePagamento;
 import br.com.caelum.eats.restaurante.RestauranteFormaDePagamento.RestauranteFormaDePagamentoId;
-import lombok.AllArgsConstructor;
 
 @RestController
-@AllArgsConstructor
 class RestauranteFormaDePagamentoController {
 
+	@Autowired
 	private RestauranteFormaDePagamentoRepository restauranteFormaDePagamentoRepo;
 
 	@PostMapping("/parceiros/restaurantes/{idRestaurante}/formas-de-pagamento")

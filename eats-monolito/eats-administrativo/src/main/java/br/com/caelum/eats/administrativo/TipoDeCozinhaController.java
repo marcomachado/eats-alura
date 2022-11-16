@@ -3,6 +3,7 @@ package br.com.caelum.eats.administrativo;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,13 +12,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.AllArgsConstructor;
-
 @RestController
-@AllArgsConstructor
 class TipoDeCozinhaController {
 
-	private TipoDeCozinhaRepository repo;
+
+	@Autowired private TipoDeCozinhaRepository repo;
 
 	@GetMapping("/tipos-de-cozinha")
 	List<TipoDeCozinhaDto> lista() {
