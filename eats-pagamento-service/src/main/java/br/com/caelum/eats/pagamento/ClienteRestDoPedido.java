@@ -1,6 +1,7 @@
 package br.com.caelum.eats.pagamento;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
@@ -14,24 +15,29 @@ import java.util.Map;
 @Service
 public class ClienteRestDoPedido {
 
-    private final String monolitoUrl;
     private final RestTemplate restTemplate;
 
-    public ClienteRestDoPedido(@Value("${configuracao.monolito.url}") String monolitoUrl, RestTemplate restTemplate) {
-        this.monolitoUrl = monolitoUrl;
+    @Autowired
+    private MonolitoClient monolitoClient;
+
+    public ClienteRestDoPedido(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
     }
 
     void notificaPagamentoDoPedido(Long pedidoId) {
-        String endpoint = this.monolitoUrl.concat(String.format("/pedidos/%d/status", pedidoId));
+        /*String endpoint = this.monolitoUrl.concat(String.format("/pedidos/%d/status", pedidoId));
 
-        ResponseEntity<?> response = restTemplate.exchange(endpoint, HttpMethod.PUT, new HttpEntity<>(new PedidoMudancaDeStatusRequest("pago".toUpperCase())), Map.class);
+        ResponseEntity<?> response = restTemplate.exchange(endpoint, HttpMethod.PUT,
+        new HttpEntity<>(new PedidoMudancaDeStatusRequest("pago".toUpperCase())), Map.class);
+        */
 
 //        this.restTemplate.put(endpoint, new PedidoMudancaDeStatusRequest("pago".toUpperCase()));
 
-        if (!HttpStatus.valueOf(response.getStatusCodeValue()).is2xxSuccessful()) {
+        monolitoClient.notificaPagamentoDoPedido(pedidoId, new PedidoMudancaDeStatusRequest("pago".toUpperCase()));
+
+        /*if (!HttpStatus.valueOf(response.getStatusCodeValue()).is2xxSuccessful()) {
             throw new RuntimeException("problema ao tentar mudar o status do pedido: " + pedidoId);
-        }
+        }*/
     }
 }
 
